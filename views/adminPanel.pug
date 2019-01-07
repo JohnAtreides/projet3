@@ -1,0 +1,83 @@
+extends layout.pug
+
+include errors
+
+block title
+    | #{__('Administration')}
+
+block content
+    +errors(errors)
+    div(class="row")
+        div(class="col")
+            h4 #{__('Menu')}
+            table(class='table table-striped')
+                tbody
+                    form(method="POST" action="/admin/Dish" class="form-inline")
+                        tr
+                            td
+                                input(
+                                    class="form-control" 
+                                    type="text" 
+                                    value=teamData.name
+                                    name="name"
+                                    minlength=3
+                                    maxlength=20)
+                            td
+                                button(class="btn btn-primary" type="submit") #{__('Add')}
+                    each team in teams
+                        tr
+                            td #{team.name}
+                            td
+        div(class="col-8")
+            h4 #{__('Matches')}
+            table(class='table table-striped')
+                tbody
+                    form(
+                        method="POST" 
+                        action="/admin/matches" 
+                        class="form-inline")
+                        input(type="hidden" name ="_csrf" value=csrf)
+                        tr
+                            td
+                                input(
+                                    class="form-control" 
+                                    type="date"
+                                    value=matchData.date
+                                    name="date")
+                            td
+                                select(class="form-control" name= "team0" required)
+                                    each team in teams
+                                        option(
+                                            value=team._id 
+                                            selected=team._id.equals(matchData.team0)) #{team.name}
+                            td
+                                input(
+                                    class="form-control" 
+                                    type="number" 
+                                    value=matchData.score0
+                                    name="score0")
+                            td
+                                input(
+                                    class="form-control" 
+                                    type="number" 
+                                    value=matchData.score1
+                                    name="score1")
+                            td
+                                select(class="form-control" name= "team1")
+                                    each team in teams
+                                        option(
+                                            value=team._id 
+                                            selected=team._id.equals(matchData.team1)) #{team.name}
+                            td
+                                button(class="btn btn-primary" type="submit") #{__('Add')}
+                    each match in matches
+                            tr
+                                td #{dateFormat(match.date, __('dateFormat'))}
+                                td #{match.teams[0].name}
+                                td #{match.scores[0]} 
+                                td #{match.scores[1]}
+                                td #{match.teams[1].name}
+                                td
+                                    form(action="/admin/deleteMatch")
+                                        button(class="btn btn-danger" type="submit")
+                                            i(class="material-icons") delete

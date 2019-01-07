@@ -1,0 +1,9 @@
+{
+	"_id": "_id",
+	"name": "name",
+	"type": "type",
+	"desc": "desc",
+	"price": "price",
+	"Error": "Error",
+	"The requested URL was not found.": "The requested URL was not found."
+}

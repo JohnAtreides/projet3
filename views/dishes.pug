@@ -1,0 +1,20 @@
+mixin dishes(dishes)
+    table(class="table table-striped")
+        thead(class="thead-dark")
+            tr
+                th
+                th #{__('_id')}
+                th #{__('name')}
+                th #{__('type')}
+                th #{__('desc')}
+                th #{__('price')}
+        tbody
+            each dish in dishes
+                tr
+                    td
+                        
+                    td #{dish._id}
+                    td #{dish.name}
+                    td #{dish.type}
+                    td #{dish.desc}
+                    td #{dish.price}

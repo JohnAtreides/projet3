@@ -1,0 +1,17 @@
+extends layout.pug
+
+include ./dishes
+
+
+block title
+    | Menu
+
+block content
+    //dishes(starters)
+    +dishes(starters)
+
+    //dishes(dishes)
+    +dishes(dishes)
+    
+    //+dishes(deserts)
+    +dishes(deserts)
