@@ -9,10 +9,11 @@ import {  MongoClient }  from "mongodb";
 import {  AsyncModelImpl } from  "./models/AsyncModelImpl";
 import {  AsyncController } from  "./controllers/AsyncController";
 import {  Request,  Response,  NextFunction } from  "express";
-/*import {  AdminModelImpl } from  "./models/admin/AdminModelImpl";
+import {  AdminModelImpl } from  "./models/admin/AdminModelImpl";
 import {  AdminController } from  "./controllers/AdminController";
 import {  AuthModelImpl } from  "./models/auth/AuthModelImpl";
-import {  AuthController } from  "./controllers/AuthController";*/
+import {  AuthController } from  "./controllers/AuthController";
+
 
 i18n.configure({
 locales: ['fr', 'en'],

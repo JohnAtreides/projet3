@@ -1,16 +1,11 @@
 
 import { Dish } from "./Dish";
-
 import { Resto } from "./Resto";
-
 import { AsyncModel } from "./AsyncModel";
-
 import { ModelImpl } from "./ModelImpl";
-
 import { Model } from "./Model";
-
 import { Db, ObjectId } from 'mongodb';
-
+import { Comment } from "./Comment";
 
 
 export class AsyncModelImpl implements AsyncModel {
@@ -31,11 +26,11 @@ export class AsyncModelImpl implements AsyncModel {
 
 
 
-    /*async commentaires(): Promise<Comment[]> {
+    async commentaires(): Promise<Comment[]> {
         return await this.db.collection<Comment>('commentaires').find().toArray();
     }
 
-    async Dish(id: any): Promise<Dish> {
+    async dish(id: any): Promise<Dish> {
 
 
 
@@ -49,15 +44,6 @@ export class AsyncModelImpl implements AsyncModel {
 
 
     }
-
-    async resto(): Promise<Resto> {
-
-        return await this.db.collection<Resto>('resto');
-
-    }
-
-
-*/
 
 }
 

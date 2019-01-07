@@ -20,7 +20,7 @@ class AdminController {
         router.use(authController.redirectUnloggedUser.bind(authController));
         router.get('/', this.getAdminPanel.bind(this));
         router.post('/dish', this.postDish.bind(this));
-        router.post('/matches', this.postcomment.bind(this));
+        router.post('/comment', this.postcomment.bind(this));
         return router;
     }
     getAdminPanel(request, response, next) {
@@ -50,20 +50,20 @@ class AdminController {
             }
         });
     }
-    deleteMatch(request, response, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                yield this.adminModel.deleteMatch(request.body);
-                response.redirect(request.baseUrl);
-            }
-            catch (errors) {
-                yield this.renderAdminPanel(request, response, {}, request.body, errors);
-            }
-        });
+    /*
+    private async  deleteMatch(request: Request, response: Response, next  : NextFunction): Promise<void> {
+    try {
+    await this.adminModel.deleteMatch(request.body);
+    response.redirect(request.baseUrl);
+    } catch (errors) {
+    await this.renderAdminPanel(request, response, {}, request.body, errors);
     }
+    }
+    */
     renderAdminPanel(request, response, DishData, CommentData, errors) {
         return __awaiter(this, void 0, void 0, function* () {
-            const dishes = yield this.model.dishes();
+            const dishes = yield this.model.dishes('');
+            // dishes('') à vérifier
             const Comments = yield this.model.commentaires();
             response.render('adminPanel', {
                 csrd: request.csrfToken(),

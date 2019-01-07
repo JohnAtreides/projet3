@@ -6,6 +6,7 @@ import {  AuthController } from  './AuthController';
 import {  request }  from 'http';
 import {  DishData }  from '../models/admin/DishData';
 import { CommentData } from '../models/admin/CommentData';
+import { stringLiteral } from 'babel-types';
 
 export  class AdminController {
 private adminModel :  AdminModel;
@@ -20,7 +21,7 @@ const router  = Router();
 router.use(authController.redirectUnloggedUser.bind(authController));
 router.get('/', this.getAdminPanel.bind(this));
 router.post('/dish', this.postDish.bind(this));
-router.post('/matches', this.postcomment.bind(this));
+router.post('/comment', this.postcomment.bind(this));
 return router;
 }
 
@@ -45,6 +46,7 @@ await this.renderAdminPanel(request, response, {}, request.body, errors);
 }
 }
 
+/*
 private async  deleteMatch(request: Request, response: Response, next  : NextFunction): Promise<void> {
 try {
 await this.adminModel.deleteMatch(request.body);
@@ -53,9 +55,12 @@ response.redirect(request.baseUrl);
 await this.renderAdminPanel(request, response, {}, request.body, errors);
 }
 } 
+*/
+
 
 private async  renderAdminPanel(request: Request, response: Response, DishData :  any, CommentData :  any, errors :  any) : Promise<void> {
-const dishes  = await this.model.dishes();
+const dishes  = await this.model.dishes('');
+// dishes('') à vérifier
 const Comments =  await this.model.commentaires();
 response.render('adminPanel',  {
 csrd : request.csrfToken(),

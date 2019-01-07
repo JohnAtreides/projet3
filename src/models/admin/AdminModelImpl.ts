@@ -13,7 +13,7 @@ export class AdminModelImpl implements AdminModel {
     private db: Db;
     private model: AsyncModel;
     /**
-    * Construit un modÃ¨le asynchrone.
+    * Construit un modèle asynchrone.
     * 
     * @param db Base de donnÃ©es.
     * @param model ModÃ¨le asynchrone.

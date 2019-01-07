@@ -17,7 +17,7 @@ const DeleteDishData_1 = require("./DeleteDishData");
 const DeleteCommentData_1 = require("./DeleteCommentData");
 class AdminModelImpl {
     /**
-    * Construit un modÃ¨le asynchrone.
+    * Construit un modèle asynchrone.
     *
     * @param db Base de donnÃ©es.
     * @param model ModÃ¨le asynchrone.

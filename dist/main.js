@@ -18,10 +18,6 @@ const bodyParser = require("body-parser");
 const mongodb_1 = require("mongodb");
 const AsyncModelImpl_1 = require("./models/AsyncModelImpl");
 const AsyncController_1 = require("./controllers/AsyncController");
-/*import {  AdminModelImpl } from  "./models/admin/AdminModelImpl";
-import {  AdminController } from  "./controllers/AdminController";
-import {  AuthModelImpl } from  "./models/auth/AuthModelImpl";
-import {  AuthController } from  "./controllers/AuthController";*/
 i18n.configure({
     locales: ['fr', 'en'],
     directory: './locales'
