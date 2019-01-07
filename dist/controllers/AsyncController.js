@@ -17,6 +17,8 @@ class AsyncController {
         const router = express_1.Router();
         router.get('/', this.getMenu.bind(this));
         // router.get('/team/:teamId', this.getTeam.bind(this));
+        router.get('/forum', this.getforum.bind(this));
+        router.get('/contact', this.getcontact.bind(this));
         return router;
     }
     getMenu(request, response, next) {
@@ -33,6 +35,23 @@ class AsyncController {
             catch (exception) {
                 next(exception);
             }
+        });
+    }
+    getforum(request, response, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const commentaires = yield this.model.commentaires();
+                console.log(commentaires);
+                response.render('forum', { commmentaires: commentaires });
+            }
+            catch (exception) {
+                next(exception);
+            }
+        });
+    }
+    getcontact(request, response, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            response.render('contact');
         });
     }
 }

@@ -21,6 +21,7 @@ class AdminController {
         router.get('/', this.getAdminPanel.bind(this));
         router.post('/dish', this.postDish.bind(this));
         router.post('/comment', this.postcomment.bind(this));
+        //router.get('/add', this.add.bind(this));
         return router;
     }
     getAdminPanel(request, response, next) {
@@ -50,6 +51,11 @@ class AdminController {
             }
         });
     }
+    /*
+    private async  add(request: Request, response: Response, next  : NextFunction): Promise<void> {
+        
+        await redirect(request, response, {}, request.body );
+    */
     /*
     private async  deleteMatch(request: Request, response: Response, next  : NextFunction): Promise<void> {
     try {

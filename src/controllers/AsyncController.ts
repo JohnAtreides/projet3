@@ -14,6 +14,8 @@ export class AsyncController {
         const router = Router();
         router.get('/', this.getMenu.bind(this));
         // router.get('/team/:teamId', this.getTeam.bind(this));
+        router.get('/forum', this.getforum.bind(this));
+        router.get('/contact',this.getcontact.bind(this));
         return router;
     }
 
@@ -29,5 +31,18 @@ export class AsyncController {
         } catch (exception) {
             next(exception);
         }
+    }
+    private async getforum(request: Request, response: Response, next: NextFunction): Promise<void> {
+        try {
+            const commentaires = await this.model.commentaires();
+            console.log(commentaires);
+            response.render('forum', { commmentaires : commentaires });
+        } catch (exception) {
+            next(exception);
+        }
+    }
+
+    private async getcontact(request: Request, response: Response, next: NextFunction): Promise<void> {
+        response.render('contact');
     }
 }

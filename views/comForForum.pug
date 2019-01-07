@@ -1,0 +1,12 @@
+mixin commentaires(commentaires)
+    table(class="table table-striped")
+        thead(class="thead-dark")
+            tr
+                th
+                th #{__('wid')}
+                th #{__('text')}
+        tbody
+            each commentaires in commentaires
+                tr    
+                    td #{commentaires.wid}
+                    td #{commentaires.text}

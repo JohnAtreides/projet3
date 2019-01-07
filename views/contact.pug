@@ -1,0 +1,13 @@
+extends layout.pug
+
+include errors
+
+block title
+    | #{__('Infos utiles ')}
+
+block content
+    +errors(errors)
+
+    input(type="hidden" name="_csrf" value=csrf)
+
+    p test

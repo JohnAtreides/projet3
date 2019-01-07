@@ -9,15 +9,26 @@ html(lang="fr")
         header
             div(class='navbar navbar-dark bg-dark')
                 div(class="container")
-                    div
+                    div                        
                         a(class="navbar-brand" href="/")
                             i(class="material-icons") home
+
+                        a(class="navbar-brand" href="/contact")
+                            i(class="material-icons") info
+                        
+                        a(class="navbar-brand" href="/forum")
+                            i(class="material-icons") forum
+                        
                         span(class="navbar-brand") 
                             block title
                     if loggedUser
                         form(class="form-inline")
                                 span(class="form-control mr-sm-2") #{loggedUser.username}
                                 a(href="/auth/logOut" class="btn btn-primary") #{__('Log out')}
+                        if loggedUser.username=="admin1"
+                            form(class="form-inline")
+                                a(href="/admin/add" class="btn btn-primary") Add
+                                a(href="/admin/del" class="btn btn-primary") Del
         main
             div(class='container')
                 br

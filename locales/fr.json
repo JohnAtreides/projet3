@@ -5,5 +5,22 @@
 	"desc": "desc",
 	"price": "price",
 	"Error": "Error",
-	"The requested URL was not found.": "The requested URL was not found."
+	"The requested URL was not found.": "The requested URL was not found.",
+	"Something failed.": "Something failed.",
+	"Log in": "Log in",
+	"Username": "Username",
+	"Password": "Password",
+	"Sign up": "Sign up",
+	"only letters and numbers": "only letters and numbers",
+	"no whitespace": "no whitespace",
+	"Username or password is not correct": "Username or password is not correct",
+	"Administration": "Administration",
+	"Log out": "Log out",
+	"Menu": "Menu",
+	"Username already exists": "Username already exists",
+	"contact": "contact",
+	"Infos utiles ": "Infos utiles ",
+	"Forum": "Forum",
+	"comment": "comment",
+	"Add": "Add"
 }

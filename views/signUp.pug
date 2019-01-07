@@ -8,6 +8,9 @@ block title
 block content
     form(method="POST")
         +errors(errors)
+
+        input(type="hidden" name="_csrf" value=csrf)
+        
         div(class="form-group")
             label(for="username") #{__('Username')} (#{__('only letters and numbers')})
             input(

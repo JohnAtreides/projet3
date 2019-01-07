@@ -1,0 +1,71 @@
+extends layout.pug
+
+include errors
+
+block title
+    | #{__('add')}
+
+block content
+    +errors(errors)
+
+    input(type="hidden" name="_csrf" value=csrf)
+    
+
+    div(class="row")
+        div(class="col")
+            h4 #{__('Menu')}
+            table(class='table table-striped')
+                tbody
+                    form(method="POST" action="/admin/Dish" class="form-inline")
+                        tr
+                            td
+                                p Ajout d'un plat
+                            td
+                                input(
+                                    class="form-control" 
+                                    type="text" 
+                                    value=DishData.name
+                                    name="name"
+                                    minlength=5
+                                    maxlength=30)
+                            td
+                                    select(name="type")
+                                        option(value='starters') entrées
+                                        option(value='dishes') plats
+                                        option(value='deserts') desserts
+                            td
+                                input(
+                                    class="form-control" 
+                                    type="text" 
+                                    value=DishData.desc
+                                    name="desc"
+                                    minlength=10
+                                    maxlength=100)
+                            td
+                                input(
+                                    class="form-control" 
+                                    type="text" 
+                                    value=DishData.price
+                                    name="price"
+                                    minlength=1
+                                    maxlength=5)
+                            td
+                            button(class="btn btn-primary" type="submit") #{__('Add')}
+
+table(class='table table-striped')
+                tbody
+                    form(method="POST" action="/admin/comment" class="form-inline")
+
+                        tr
+                            td 
+                                p Ajout d'un commentaire
+                            td 
+                                input(
+                                    class="form-control" 
+                                    type="text" 
+                                    value=CommentData.text
+                                    name="text"
+                                    minlength=1
+                                    maxlength=200)
+                            td
+                            button(class="btn btn-primary" type="submit") #{__('Add')}

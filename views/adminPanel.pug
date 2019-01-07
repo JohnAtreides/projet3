@@ -7,6 +7,10 @@ block title
 
 block content
     +errors(errors)
+
+    input(type="hidden" name="_csrf" value=csrf)
+    
+
     div(class="row")
         div(class="col")
             h4 #{__('Menu')}
@@ -15,26 +19,67 @@ block content
                     form(method="POST" action="/admin/Dish" class="form-inline")
                         tr
                             td
+                                p Ajout d'un plat
+                            td
                                 input(
                                     class="form-control" 
                                     type="text" 
-                                    value=teamData.name
+                                    value=DishData.name
                                     name="name"
-                                    minlength=3
-                                    maxlength=20)
+                                    minlength=5
+                                    maxlength=30)
                             td
-                                button(class="btn btn-primary" type="submit") #{__('Add')}
-                    each team in teams
+                                    select(name="type")
+                                        option(value='starters') entrées
+                                        option(value='dishes') plats
+                                        option(value='deserts') desserts
+                            td
+                                input(
+                                    class="form-control" 
+                                    type="text" 
+                                    value=DishData.desc
+                                    name="desc"
+                                    minlength=10
+                                    maxlength=100)
+                            td
+                                input(
+                                    class="form-control" 
+                                    type="text" 
+                                    value=DishData.price
+                                    name="price"
+                                    minlength=1
+                                    maxlength=5)
+                            td
+                            button(class="btn btn-primary" type="submit") #{__('Add')}
+
+table(class='table table-striped')
+                tbody
+                    form(method="POST" action="/admin/comment" class="form-inline")
+
                         tr
-                            td #{team.name}
+                            td 
+                                p Ajout d'un commentaire
+                            td 
+                                input(
+                                    class="form-control" 
+                                    type="text" 
+                                    value=CommentData.text
+                                    name="text"
+                                    minlength=1
+                                    maxlength=200)
                             td
+                            button(class="btn btn-primary" type="submit") #{__('Add')}
+
+
+                            
+
         div(class="col-8")
-            h4 #{__('Matches')}
+            h4 #{__('Comment')}
             table(class='table table-striped')
                 tbody
                     form(
                         method="POST" 
-                        action="/admin/matches" 
+                        action="/admin/commentaires" 
                         class="form-inline")
                         input(type="hidden" name ="_csrf" value=csrf)
                         tr
@@ -42,14 +87,14 @@ block content
                                 input(
                                     class="form-control" 
                                     type="date"
-                                    value=matchData.date
+                                    value=CommentData.date
                                     name="date")
                             td
-                                select(class="form-control" name= "team0" required)
-                                    each team in teams
+                                select(class="form-control" name= "dish0" required)
+                                    each dish in dishes
                                         option(
-                                            value=team._id 
-                                            selected=team._id.equals(matchData.team0)) #{team.name}
+                                            value=dish._id 
+                                            selected=dish._id./*equals(matchData.team0))*/#{dish.name})
                             td
                                 input(
                                     class="form-control" 

@@ -22,6 +22,7 @@ router.use(authController.redirectUnloggedUser.bind(authController));
 router.get('/', this.getAdminPanel.bind(this));
 router.post('/dish', this.postDish.bind(this));
 router.post('/comment', this.postcomment.bind(this));
+//router.get('/add', this.add.bind(this));
 return router;
 }
 
@@ -29,7 +30,7 @@ private async  getAdminPanel(request: Request, response: Response, next  : NextF
 await this.renderAdminPanel(request, response, {}, {}, undefined);
 }
 
-private async  postDish(request: Request, response: Response, next  : NextFunction): Promise<void> {
+private async  postDish(request: Request, response: Response, next: NextFunction): Promise<void> {
 try {
 await this.adminModel.addDish(request.body);
 response.redirect(request.baseUrl);
@@ -37,6 +38,7 @@ response.redirect(request.baseUrl);
 await this.renderAdminPanel(request, response, request.body, {}, errors);
 }
 } 
+
 private async  postcomment(request: Request, response: Response, next  : NextFunction): Promise<void> {
 try {
 await this.adminModel.addcomment(request.body);
@@ -45,6 +47,13 @@ response.redirect(request.baseUrl);
 await this.renderAdminPanel(request, response, {}, request.body, errors);
 }
 }
+
+/*
+private async  add(request: Request, response: Response, next  : NextFunction): Promise<void> {
+    
+    await redirect(request, response, {}, request.body );
+*/
+
 
 /*
 private async  deleteMatch(request: Request, response: Response, next  : NextFunction): Promise<void> {

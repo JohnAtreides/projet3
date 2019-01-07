@@ -50,7 +50,9 @@ class AuthController {
     }
     getSignUp(request, response, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            response.render('signUp', { logInData: {} });
+            response.render('signUp', {
+                csrf: request.csrfToken(), logInData: {}
+            });
         });
     }
     postSignUp(request, response, next) {
@@ -58,22 +60,26 @@ class AuthController {
             if (!request.session)
                 throw new Error('Cookies must be enabled');
             try {
+                const userId = yield this.authModel.signUp(request.body);
+                request.session.userId = userId;
+                response.redirect(this.logInRedirection);
                 /**
                  * TODO :
                  * - Inscrire l'utilisateur
                  * - Faire en sorte que l'utilisateur soit connecté en modifiant request.session.userId
                  * - rediriger l'utilisateur vers this.logInRedirection
                  */
-                throw new Error('Not implemented');
             }
             catch (errors) {
-                response.render('signUp', { logInData: request.body, errors: errors });
+                response.render('signUp', { logInData: request.body, errors: errors, csrf: request.csrfToken() });
             }
         });
     }
     getLogIn(request, response, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            response.render('logIn', { logInData: {} });
+            response.render('logIn', {
+                csrf: request.csrfToken(), logInData: {}
+            });
         });
     }
     postLogIn(request, response, next) {
@@ -81,16 +87,16 @@ class AuthController {
             if (!request.session)
                 throw new Error('Cookies must be enabled');
             try {
-                /**
-                 * TODO :
-                 * - Récupérer l'identifiant de l'utilisateur (avec le modèle donc en vérifiant son mot de passe)
-                 * - Faire en sorte que l'utilisateur soit connecté en modifiant request.session.userId
-                 * - rediriger l'utilisateur vers this.logInRedirection
-                 */
-                throw new Error('Not implemented');
+                const userId = yield this.authModel.getUserId(request.body);
+                request.session.userId = userId;
+                response.redirect(this.logInRedirection);
             }
             catch (errors) {
-                response.render('logIn', { logInData: request.body, errors: errors });
+                response.render('logIn', {
+                    csrf: request.csrfToken(),
+                    logInData: request.body,
+                    errors: errors
+                });
             }
         });
     }

@@ -1,4 +1,4 @@
-import {  IsMongoId,  IsISO8601,  IsNumberString, IsString, MaxLength} from  "class-validator";
+import {  IsMongoId,  IsISO8601,  IsNumberString, IsString, MaxLength, MinLength} from  "class-validator";
 import {  Expose }  from "class-transformer";
 
 /**
@@ -9,6 +9,7 @@ export  class CommentData {
 
 @Expose()
 @IsString()
+@MinLength(1, {message : "Sérieux ? rien d'autre à dire ??"})
 @MaxLength(200, {message : "comment is too long"})
 text :  string;
 

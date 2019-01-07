@@ -21,6 +21,7 @@ class CommentData {
 __decorate([
     class_transformer_1.Expose(),
     class_validator_1.IsString(),
+    class_validator_1.MinLength(1, { message: "Sérieux ? rien d'autre à dire ??" }),
     class_validator_1.MaxLength(200, { message: "comment is too long" })
 ], CommentData.prototype, "text", void 0);
 __decorate([

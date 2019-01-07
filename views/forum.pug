@@ -1,0 +1,15 @@
+extends layout.pug
+
+include errors
+
+block title
+    | #{__('Forum')}
+
+block content
+    +errors(errors)
+
+    input(type="hidden" name="_csrf" value=csrf)
+
+    if loggedUser
+        include comment.pug
+    include comForForum
