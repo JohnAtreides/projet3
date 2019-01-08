@@ -7,7 +7,7 @@ export  class DishData {
 @Expose()
 @IsString()
 @MinLength(5, {message : "dish's name is too short"})
-@MaxLength(30, {message : "dish's name is too long"})
+@MaxLength(50, {message : "dish's name is too long"})
 name :  string;
 
 @Expose()
@@ -16,7 +16,7 @@ type :  string;
 @Expose()
 @IsString()
 @MinLength(10, {message : "dish's description is too short"})
-@MaxLength(100, {message : "dish's description is too long"})
+@MaxLength(400, {message : "dish's description is too long"})
 desc :  string;
 
 @Expose()

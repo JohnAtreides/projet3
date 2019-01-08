@@ -1,4 +1,4 @@
-mixin dishes(dishes)
+mixin dishesToDel(dishesToDel)
     table(class="table table-striped")
         thead(class="thead-dark")
             tr
@@ -7,11 +7,16 @@ mixin dishes(dishes)
                 th #{__('type')}
                 th #{__('desc')}
                 th #{__('prix en €')}
+                th
         tbody
-            each dish in dishes
+            each dish in dishesToDel
                 tr
                     td
                     td #{dish.name}
                     td #{dish.type}
                     td #{dish.desc}
                     td #{dish.price}
+                    td
+                        form(action="/admin/delDish")
+                                        button(class="btn btn-danger" type="submit" value=dish._id)
+                                            i(class="material-icons") delete

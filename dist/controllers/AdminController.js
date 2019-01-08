@@ -19,7 +19,9 @@ class AdminController {
         router.use(authController.redirectUnloggedUser.bind(authController));
         router.post('/dish', this.postDish.bind(this));
         router.post('/comment', this.postcomment.bind(this));
-        //router.get('/add', this.add.bind(this));
+        router.get('/add', this.addDish.bind(this));
+        router.get('/del', this.delDish.bind(this));
+        router.get('/delDish', this.deleteDish.bind(this));
         return router;
     }
     postDish(request, response, next) {
@@ -46,6 +48,38 @@ class AdminController {
                 await this.renderAdminPanel(request, response, {}, request.body, errors);
                 */
             }
+        });
+    }
+    addDish(request, response, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            response.render(`add`, { csrf: request.csrfToken() });
+        });
+    }
+    delDish(request, response, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const starters = yield this.model.dishes('starters');
+                const dishes = yield this.model.dishes('dishes');
+                const deserts = yield this.model.dishes('deserts');
+                response.render(`del`, { csrf: request.csrfToken(), starters: starters, dishes: dishes, deserts: deserts });
+            }
+            catch (exception) {
+                next(exception);
+            }
+        });
+    }
+    /*
+    private async  add(request: Request, response: Response, next  : NextFunction): Promise<void> {
+        
+        await redirect(request, response, {}, request.body );
+    */
+    deleteDish(request, response, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield this.adminModel.deleteDish(request.body);
+                response.redirect('/');
+            }
+            catch (errors) { }
         });
     }
 }

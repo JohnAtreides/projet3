@@ -1,0 +1,17 @@
+extends layout.pug
+
+include ./dishesToDel
+
+
+block title
+    | Suppression de Plat
+
+block content
+    //dishesToDel(starters)
+    +dishesToDel(starters)
+
+    //dishesToDel(dishes)
+    +dishesToDel(dishes)
+    
+    //+dishesToDel(deserts)
+    +dishesToDel(deserts)

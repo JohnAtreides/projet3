@@ -20,7 +20,7 @@ __decorate([
     class_transformer_1.Expose(),
     class_validator_1.IsString(),
     class_validator_1.MinLength(5, { message: "dish's name is too short" }),
-    class_validator_1.MaxLength(30, { message: "dish's name is too long" })
+    class_validator_1.MaxLength(50, { message: "dish's name is too long" })
 ], DishData.prototype, "name", void 0);
 __decorate([
     class_transformer_1.Expose(),
@@ -30,7 +30,7 @@ __decorate([
     class_transformer_1.Expose(),
     class_validator_1.IsString(),
     class_validator_1.MinLength(10, { message: "dish's description is too short" }),
-    class_validator_1.MaxLength(100, { message: "dish's description is too long" })
+    class_validator_1.MaxLength(400, { message: "dish's description is too long" })
 ], DishData.prototype, "desc", void 0);
 __decorate([
     class_transformer_1.Expose(),
