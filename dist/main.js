@@ -44,7 +44,7 @@ function start() {
         const adminModel = new AdminModelImpl_1.AdminModelImpl(db, model);
         const adminController = new AdminController_1.AdminController(adminModel, model);
         const authModel = new AuthModelImpl_1.AuthModelImpl(db);
-        const authController = new AuthController_1.AuthController(authModel, '/auth', '/admin');
+        const authController = new AuthController_1.AuthController(authModel, '/auth', '/');
         const myExpress = express();
         myExpress.set('view engine', 'pug');
         myExpress.use(i18n.init);

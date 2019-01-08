@@ -41,7 +41,7 @@ const adminModel = new AdminModelImpl(db, model);
 const adminController = new AdminController(adminModel, model);
 
 const authModel =  new AuthModelImpl(db);
-const authController =  new AuthController(authModel, '/auth', '/admin');
+const authController =  new AuthController(authModel, '/auth', '/');
 
 const myExpress =  express();
 myExpress.set('view engine', 'pug');

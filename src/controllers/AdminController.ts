@@ -19,34 +19,35 @@ this.model =  model;
 router(authController :  AuthController) :  Router {
 const router  = Router();
 router.use(authController.redirectUnloggedUser.bind(authController));
-router.get('/', this.getAdminPanel.bind(this));
 router.post('/dish', this.postDish.bind(this));
 router.post('/comment', this.postcomment.bind(this));
 //router.get('/add', this.add.bind(this));
 return router;
 }
 
-private async  getAdminPanel(request: Request, response: Response, next  : NextFunction): Promise<void> {
-await this.renderAdminPanel(request, response, {}, {}, undefined);
-}
-
 private async  postDish(request: Request, response: Response, next: NextFunction): Promise<void> {
 try {
 await this.adminModel.addDish(request.body);
-response.redirect(request.baseUrl);
-} catch (errors) {
-await this.renderAdminPanel(request, response, request.body, {}, errors);
+response.redirect('/');
+}
+catch (errors) {
+/*
+await this.renderAdminPanel(request, response, request.body, {}, errors); 
+*/
 }
 } 
 
 private async  postcomment(request: Request, response: Response, next  : NextFunction): Promise<void> {
 try {
 await this.adminModel.addcomment(request.body);
-response.redirect(request.baseUrl);
+response.redirect('/');
 } catch (errors) {
+/*
 await this.renderAdminPanel(request, response, {}, request.body, errors);
+*/
 }
 }
+
 
 /*
 private async  add(request: Request, response: Response, next  : NextFunction): Promise<void> {
@@ -65,21 +66,5 @@ await this.renderAdminPanel(request, response, {}, request.body, errors);
 }
 } 
 */
-
-
-private async  renderAdminPanel(request: Request, response: Response, DishData :  any, CommentData :  any, errors :  any) : Promise<void> {
-const dishes  = await this.model.dishes('');
-// dishes('') à vérifier
-const Comments =  await this.model.commentaires();
-response.render('adminPanel',  {
-csrd : request.csrfToken(),
-dish : dishes, 
-Comment : Comments, 
-dateFormat: dateFormat, 
-dishdata : DishData,
-commentdata : CommentData,
-errors : errors
-});
 }
 
-}

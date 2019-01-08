@@ -36,7 +36,7 @@ export class AsyncController {
         try {
             const commentaires = await this.model.commentaires();
             console.log(commentaires);
-            response.render('forum', { commmentaires : commentaires });
+            response.render('forum', { csrf : request.csrfToken(), commmentaires : commentaires });
         } catch (exception) {
             next(exception);
         }

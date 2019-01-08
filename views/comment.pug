@@ -2,8 +2,8 @@ table(class='table table-striped' border='0')
                 th Ajout d'un commentaire
 
                 tbody
-                    form(method="POST" action="/user/comment" class="form-inline")
-
+                    form(method="POST" action="/admin/comment")
+                        input(type="hidden" name="_csrf" value=csrf)
                         tr
                             td 
                                 input(
