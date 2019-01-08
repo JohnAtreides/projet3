@@ -42,7 +42,7 @@ class AsyncController {
             try {
                 const commentaires = yield this.model.commentaires();
                 console.log(commentaires);
-                response.render('forum', { csrf: request.csrfToken(), commmentaires: commentaires });
+                response.render('forum', { csrf: request.csrfToken(), commentaires: commentaires });
             }
             catch (exception) {
                 next(exception);

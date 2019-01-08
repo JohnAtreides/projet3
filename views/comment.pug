@@ -4,6 +4,7 @@ table(class='table table-striped' border='0')
                 tbody
                     form(method="POST" action="/admin/comment")
                         input(type="hidden" name="_csrf" value=csrf)
+                        input(type="hidden" name="wname" value=loggedUser.username)
                         tr
                             td 
                                 input(

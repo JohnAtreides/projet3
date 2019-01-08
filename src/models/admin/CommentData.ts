@@ -15,11 +15,11 @@ text :  string;
 
 @Expose()
 @IsString()
-wid :  string;
+wname :  string;
 
 constructor() {
 this.text ='';
-this.wid =  '';
+this.wname =  '';
 }
 
 }

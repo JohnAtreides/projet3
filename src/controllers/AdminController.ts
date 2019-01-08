@@ -23,7 +23,7 @@ export class AdminController {
         router.post('/comment', this.postcomment.bind(this));
         router.get('/add', this.addDish.bind(this));
         router.get('/del', this.delDish.bind(this));
-        router.get('/delDish', this.deleteDish.bind(this));
+        router.post('/delDish', this.deleteDish.bind(this));
         return router;
     }
 
@@ -42,11 +42,8 @@ export class AdminController {
     private async  postcomment(request: Request, response: Response, next: NextFunction): Promise<void> {
         try {
             await this.adminModel.addcomment(request.body);
-            response.redirect('/');
+            response.redirect('/forum');
         } catch (errors) {
-            /*
-            await this.renderAdminPanel(request, response, {}, request.body, errors);
-            */
         }
     }
 

@@ -36,7 +36,7 @@ export class AdminModelImpl implements AdminModel {
     async addcomment(data: any): Promise<any> {
         const commentData: CommentData = plainToClass<CommentData, object>(CommentData, data, { strategy: 'excludeAll' });
         await this.validate(commentData);
-        const result = await this.db.collection('menu').insertOne({ wid: commentData.wid, text: commentData.text });
+        const result = await this.db.collection('commentaires').insertOne({ wname: commentData.wname, text: commentData.text });
         return result.insertedId;
 
     }

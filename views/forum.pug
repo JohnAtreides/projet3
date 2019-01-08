@@ -1,6 +1,7 @@
 extends layout.pug
 
 include errors
+include ./commentaires
 
 block title
     | #{__('Forum')}
@@ -11,4 +12,4 @@ block content
 
     if loggedUser
         include comment.pug
-    include comForForum
+    +commentaires(commentaires)

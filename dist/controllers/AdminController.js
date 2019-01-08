@@ -21,7 +21,7 @@ class AdminController {
         router.post('/comment', this.postcomment.bind(this));
         router.get('/add', this.addDish.bind(this));
         router.get('/del', this.delDish.bind(this));
-        router.get('/delDish', this.deleteDish.bind(this));
+        router.post('/delDish', this.deleteDish.bind(this));
         return router;
     }
     postDish(request, response, next) {
@@ -41,12 +41,9 @@ class AdminController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield this.adminModel.addcomment(request.body);
-                response.redirect('/');
+                response.redirect('/forum');
             }
             catch (errors) {
-                /*
-                await this.renderAdminPanel(request, response, {}, request.body, errors);
-                */
             }
         });
     }

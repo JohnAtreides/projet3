@@ -41,7 +41,7 @@ class AdminModelImpl {
         return __awaiter(this, void 0, void 0, function* () {
             const commentData = class_transformer_1.plainToClass(CommentData_1.CommentData, data, { strategy: 'excludeAll' });
             yield this.validate(commentData);
-            const result = yield this.db.collection('menu').insertOne({ wid: commentData.wid, text: commentData.text });
+            const result = yield this.db.collection('commentaires').insertOne({ wname: commentData.wname, text: commentData.text });
             return result.insertedId;
         });
     }

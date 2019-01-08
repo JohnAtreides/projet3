@@ -15,7 +15,7 @@ const class_transformer_1 = require("class-transformer");
 class CommentData {
     constructor() {
         this.text = '';
-        this.wid = '';
+        this.wname = '';
     }
 }
 __decorate([
@@ -27,5 +27,5 @@ __decorate([
 __decorate([
     class_transformer_1.Expose(),
     class_validator_1.IsString()
-], CommentData.prototype, "wid", void 0);
+], CommentData.prototype, "wname", void 0);
 exports.CommentData = CommentData;

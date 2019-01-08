@@ -4,7 +4,7 @@ export interface Comment {
     _id: any;
 
     //identifiant de l'auteur
-    wid: any;
+    wname: string;
 
     //contenu texte du commentaire
     text: string;
