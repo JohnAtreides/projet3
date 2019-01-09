@@ -6,6 +6,9 @@ import { ModelImpl } from "./ModelImpl";
 import { Model } from "./Model";
 import { Db, ObjectId } from 'mongodb';
 import { Comment } from "./Comment";
+import { comData } from "./comData";
+import { plainToClass } from "class-transformer";
+import { validate } from "class-validator";
 
 
 export class AsyncModelImpl implements AsyncModel {
@@ -19,8 +22,8 @@ export class AsyncModelImpl implements AsyncModel {
 
     }
 
-    async dishes(type : string): Promise<Dish[]> {
-        return await this.db.collection<Dish>('menu').find({type:type}).toArray();
+    async dishes(type: string): Promise<Dish[]> {
+        return await this.db.collection<Dish>('menu').find({ type: type }).toArray();
     }
 
 
@@ -45,6 +48,21 @@ export class AsyncModelImpl implements AsyncModel {
 
     }
 
+    async searchcomment(data: any): Promise<Comment[]> {
+        console.log(data);
+        const searchData: comData = plainToClass<comData, object>(comData, data, { strategy: 'excludeAll' });
+        await this.validate(comData);
+        const a=await this.db.collection<Comment>('commentaires').find({ text: { $regex: searchData}}).toArray();
+
+        console.log(a);
+        return a;
+    }
+
+    private async  validate(object: any): Promise<void> {
+        const errors = await validate(object);
+        if (errors.length == 0) return;
+        throw errors;
+    }
 }
 
 

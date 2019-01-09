@@ -34,25 +34,23 @@ export class AdminController {
             response.redirect('/');
         }
         catch (errors) {
-            /*
-            await this.renderAdminPanel(request, response, request.body, {}, errors); 
-            */
         }
     }
 
-    private async  postcomment(request: Request, response: Response, next: NextFunction): Promise<void> {
+    private async postcomment(request: Request, response: Response, next: NextFunction): Promise<void> {
         try {
             await this.adminModel.addcomment(request.body);
             response.redirect('/forum');
-        } catch (errors) {
+        }
+        catch (errors) {
         }
     }
 
-    private async  addDish(request: Request, response: Response, next: NextFunction): Promise<void> {
+    private async addDish(request: Request, response: Response, next: NextFunction): Promise<void> {
         response.render(`add`, { csrf: request.csrfToken() });
     }
 
-    private async  delDish(request: Request, response: Response, next: NextFunction): Promise<void> {
+    private async delDish(request: Request, response: Response, next: NextFunction): Promise<void> {
         try {
             const starters = await this.model.dishes('starters');
             const dishes = await this.model.dishes('dishes');

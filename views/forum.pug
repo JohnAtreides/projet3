@@ -13,3 +13,14 @@ block content
     if loggedUser
         include comment.pug
     +commentaires(commentaires)
+
+
+    form(method="POST" action="/search")
+        input(type="hidden" name="_csrf" value=csrf)
+        input(
+            class="form-control" 
+            type="text"
+            name="text"
+            minlength=1
+            maxlength=200)
+        button(class="btn btn-primary" type="submit") #{__('Search')}

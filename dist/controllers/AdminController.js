@@ -32,9 +32,6 @@ class AdminController {
                 response.redirect('/');
             }
             catch (errors) {
-                /*
-                await this.renderAdminPanel(request, response, request.body, {}, errors);
-                */
             }
         });
     }

@@ -22,6 +22,7 @@ class AsyncController {
         router.get('/entrees', this.getentrees.bind(this));
         router.get('/plats', this.getplats.bind(this));
         router.get('/desserts', this.getdesserts.bind(this));
+        router.post('/search', this.postsearch.bind(this));
         return router;
     }
     getMenu(request, response, next) {
@@ -42,7 +43,6 @@ class AsyncController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const commentaires = yield this.model.commentaires();
-                console.log(commentaires);
                 response.render('forum', { csrf: request.csrfToken(), commentaires: commentaires });
             }
             catch (exception) {
@@ -82,6 +82,17 @@ class AsyncController {
             try {
                 const deserts = yield this.model.dishes('deserts');
                 response.render('desserts', { deserts: deserts });
+            }
+            catch (exception) {
+                next(exception);
+            }
+        });
+    }
+    postsearch(request, response, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const commentaires = yield this.model.searchcomment(request.body.text);
+                response.render('forum', { csrf: request.csrfToken(), commentaires: commentaires });
             }
             catch (exception) {
                 next(exception);

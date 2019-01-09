@@ -24,6 +24,8 @@ export interface AsyncModel {
     id Identifiant du plat à trouver.
     * @returns une promesse d'avoir le plat */
     dish(id : any): Promise<Dish>;
+
+    searchcomment(data : any): Promise<Comment[]>;
     
     /**
     * Retourne une promesse d'avoir les informations du restaurant

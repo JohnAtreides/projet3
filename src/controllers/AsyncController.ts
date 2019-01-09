@@ -18,6 +18,7 @@ export class AsyncController {
         router.get('/entrees',this.getentrees.bind(this));
         router.get('/plats',this.getplats.bind(this));
         router.get('/desserts',this.getdesserts.bind(this));
+        router.post('/search', this.postsearch.bind(this));
         return router;
     }
 
@@ -35,7 +36,6 @@ export class AsyncController {
     private async getforum(request: Request, response: Response, next: NextFunction): Promise<void> {
         try {
             const commentaires = await this.model.commentaires();
-            console.log(commentaires);
             response.render('forum', { csrf : request.csrfToken(), commentaires : commentaires });
         } catch (exception) {
             next(exception);
@@ -73,6 +73,13 @@ export class AsyncController {
         }
     }
 
-
+    private async postsearch(request: Request, response: Response, next: NextFunction): Promise<void> {
+        try {
+            const commentaires = await this.model.searchcomment(request.body.text);
+            response.render('forum', { csrf : request.csrfToken(), commentaires : commentaires });
+        } catch (exception) {
+            next(exception);
+        }
+    }
 
 }
