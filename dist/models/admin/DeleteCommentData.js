@@ -10,11 +10,11 @@ const class_validator_1 = require("class-validator");
 const class_transformer_1 = require("class-transformer");
 class DeleteCommentData {
     constructor() {
-        this.id = '';
+        this._id = '';
     }
 }
 __decorate([
     class_transformer_1.Expose(),
     class_validator_1.IsMongoId()
-], DeleteCommentData.prototype, "id", void 0);
+], DeleteCommentData.prototype, "_id", void 0);
 exports.DeleteCommentData = DeleteCommentData;

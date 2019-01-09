@@ -8,9 +8,9 @@ export  class DeleteDishData {
 
 @Expose()
 @IsMongoId()
-id :  string;
+_id :  string;
 constructor() {
-this.id =  '';
+this._id = '';
 }
 
 }

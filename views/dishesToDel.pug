@@ -18,6 +18,7 @@ mixin dishesToDel(dishesToDel)
                     td #{dish.price}
                     td
                         form(method="POST" action="/admin/delDish")
-                            input(type="hidden" name="_csrf" value=csrf
+                            input(type="hidden" name="_csrf" value=csrf)
+                            input(type="hidden" name="_id" value=dish._id)
                             button(class="btn btn-danger" type="submit")
                                 i(class="material-icons") delete

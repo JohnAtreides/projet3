@@ -1,0 +1,15 @@
+extends layout.pug
+
+include ./dishes
+
+
+block title
+    | Plats
+
+block content
+    a(href="/" class="btn btn-primary") La carte des menus
+    a(href="/entrees" class="btn btn-primary") Les entrées
+    a(href="/desserts" class="btn btn-primary") Les Desserts
+
+    //dishes(dishes)
+    +dishes(dishes)

@@ -42,15 +42,18 @@ export class AdminModelImpl implements AdminModel {
     }
 
     async deleteDish(data: any): Promise<void> {
+        //console.log('1');
         const deleteDishData: DeleteDishData = plainToClass<DeleteDishData, object>(DeleteDishData, data, { strategy: 'excludeAll' });
         await this.validate(DeleteDishData);
-        await this.db.collection('menu').deleteOne({ _id: new ObjectID(deleteDishData.id) });
+        //console.log('2');
+        await this.db.collection('menu').deleteOne({ "_id": new ObjectID(deleteDishData._id) });
     }
 
     async deletecomment(data: any): Promise<void> {
+        //console.log(data)
         const deleteCommentData: DeleteCommentData = plainToClass<DeleteCommentData, object>(DeleteCommentData, data, { strategy: 'excludeAll' });
         await this.validate(DeleteCommentData);
-        await this.db.collection('menu').deleteOne({ _id: new ObjectID(deleteCommentData.id) });
+        await this.db.collection('commentaires').deleteOne({ "_id": new ObjectID(deleteCommentData._id) });
     }
 
     /**

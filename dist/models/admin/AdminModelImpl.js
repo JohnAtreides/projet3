@@ -47,16 +47,19 @@ class AdminModelImpl {
     }
     deleteDish(data) {
         return __awaiter(this, void 0, void 0, function* () {
+            //console.log('1');
             const deleteDishData = class_transformer_1.plainToClass(DeleteDishData_1.DeleteDishData, data, { strategy: 'excludeAll' });
             yield this.validate(DeleteDishData_1.DeleteDishData);
-            yield this.db.collection('menu').deleteOne({ _id: new mongodb_1.ObjectID(deleteDishData.id) });
+            //console.log('2');
+            yield this.db.collection('menu').deleteOne({ "_id": new mongodb_1.ObjectID(deleteDishData._id) });
         });
     }
     deletecomment(data) {
         return __awaiter(this, void 0, void 0, function* () {
+            //console.log(data)
             const deleteCommentData = class_transformer_1.plainToClass(DeleteCommentData_1.DeleteCommentData, data, { strategy: 'excludeAll' });
             yield this.validate(DeleteCommentData_1.DeleteCommentData);
-            yield this.db.collection('menu').deleteOne({ _id: new mongodb_1.ObjectID(deleteCommentData.id) });
+            yield this.db.collection('commentaires').deleteOne({ "_id": new mongodb_1.ObjectID(deleteCommentData._id) });
         });
     }
     /**

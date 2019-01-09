@@ -2,11 +2,26 @@ mixin commentaires(commentaires)
     table(class="table table-striped")
         thead(class="thead-dark")
             tr
-                th
                 th #{__('wname')}
                 th #{__('text')}
+                if loggedUser
+                    th
         tbody
             each commentaire in commentaires
                 tr    
                     td #{commentaire.wname}
                     td #{commentaire.text}
+                    if loggedUser && loggedUser.username=="admin1"
+                        td
+                            form(method="POST" action="/admin/delComment")
+                                input(type="hidden" name="_csrf" value=csrf)
+                                input(type="hidden" name="_id" value=commentaire._id)
+                                button(class="btn btn-danger" type="submit")
+                                    i(class="material-icons") delete
+                    else if loggedUser && loggedUser.username==commentaire.wname
+                        td
+                            form(method="POST" action="/admin/delComment")
+                                input(type="hidden" name="_csrf" value=csrf)
+                                input(type="hidden" name="_id" value=commentaire._id)
+                                button(class="btn btn-danger" type="submit")
+                                    i(class="material-icons") delete

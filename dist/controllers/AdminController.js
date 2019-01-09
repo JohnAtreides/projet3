@@ -22,6 +22,7 @@ class AdminController {
         router.get('/add', this.addDish.bind(this));
         router.get('/del', this.delDish.bind(this));
         router.post('/delDish', this.deleteDish.bind(this));
+        router.post('/delComment', this.deleteComment.bind(this));
         return router;
     }
     postDish(request, response, next) {
@@ -76,7 +77,21 @@ class AdminController {
                 yield this.adminModel.deleteDish(request.body);
                 response.redirect('/');
             }
-            catch (errors) { }
+            catch (errors) {
+                console.log("error");
+            }
+        });
+    }
+    deleteComment(request, response, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                console.log("delete comment");
+                yield this.adminModel.deletecomment(request.body);
+                response.redirect('/forum');
+            }
+            catch (errors) {
+                console.log("error");
+            }
         });
     }
 }

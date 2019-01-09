@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+// import * as dateFormat from "dateformat";
 class AsyncController {
     constructor(model) {
         this.model = model;
@@ -16,21 +17,21 @@ class AsyncController {
     router() {
         const router = express_1.Router();
         router.get('/', this.getMenu.bind(this));
-        // router.get('/team/:teamId', this.getTeam.bind(this));
         router.get('/forum', this.getforum.bind(this));
         router.get('/contact', this.getcontact.bind(this));
+        router.get('/entrees', this.getentrees.bind(this));
+        router.get('/plats', this.getplats.bind(this));
+        router.get('/desserts', this.getdesserts.bind(this));
         return router;
     }
     getMenu(request, response, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const starters = yield this.model.dishes('starters');
-                console.log(starters);
                 const dishes = yield this.model.dishes('dishes');
-                console.log(dishes);
                 const deserts = yield this.model.dishes('deserts');
-                console.log(deserts);
-                response.render('menu', { starters: starters, dishes: dishes, deserts: deserts });
+                const jeton = "menu";
+                response.render('menu', { starters: starters, dishes: dishes, deserts: deserts, jeton: jeton });
             }
             catch (exception) {
                 next(exception);
@@ -52,6 +53,39 @@ class AsyncController {
     getcontact(request, response, next) {
         return __awaiter(this, void 0, void 0, function* () {
             response.render('contact');
+        });
+    }
+    getentrees(request, response, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const starters = yield this.model.dishes('starters');
+                response.render('entrees', { starters: starters });
+            }
+            catch (exception) {
+                next(exception);
+            }
+        });
+    }
+    getplats(request, response, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const dishes = yield this.model.dishes('dishes');
+                response.render('plats', { dishes: dishes });
+            }
+            catch (exception) {
+                next(exception);
+            }
+        });
+    }
+    getdesserts(request, response, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const deserts = yield this.model.dishes('deserts');
+                response.render('desserts', { deserts: deserts });
+            }
+            catch (exception) {
+                next(exception);
+            }
         });
     }
 }

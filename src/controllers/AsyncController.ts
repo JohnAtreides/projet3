@@ -1,7 +1,7 @@
 
 import { AsyncModel } from "../models/AsyncModel";
 import { Request, Response, NextFunction, Router } from 'express';
-import * as dateFormat from "dateformat";
+// import * as dateFormat from "dateformat";
 
 export class AsyncController {
     private model: AsyncModel;
@@ -13,21 +13,21 @@ export class AsyncController {
     router(): Router {
         const router = Router();
         router.get('/', this.getMenu.bind(this));
-        // router.get('/team/:teamId', this.getTeam.bind(this));
         router.get('/forum', this.getforum.bind(this));
         router.get('/contact',this.getcontact.bind(this));
+        router.get('/entrees',this.getentrees.bind(this));
+        router.get('/plats',this.getplats.bind(this));
+        router.get('/desserts',this.getdesserts.bind(this));
         return router;
     }
 
     private async getMenu(request: Request, response: Response, next: NextFunction): Promise<void> {
         try {
             const starters = await this.model.dishes('starters');
-            console.log(starters);
             const dishes = await this.model.dishes('dishes');
-            console.log(dishes);
             const deserts = await this.model.dishes('deserts');
-            console.log(deserts);
-            response.render('menu', { starters : starters, dishes: dishes, deserts : deserts });
+            const jeton = "menu";
+            response.render('menu', { starters : starters, dishes: dishes, deserts : deserts, jeton : jeton });
         } catch (exception) {
             next(exception);
         }
@@ -45,4 +45,34 @@ export class AsyncController {
     private async getcontact(request: Request, response: Response, next: NextFunction): Promise<void> {
         response.render('contact');
     }
+
+    private async getentrees(request: Request, response: Response, next: NextFunction): Promise<void> {
+        try {
+            const starters = await this.model.dishes('starters');
+            response.render('entrees', { starters : starters });
+        } catch (exception) {
+            next(exception);
+        }
+    }
+
+    private async getplats(request: Request, response: Response, next: NextFunction): Promise<void> {
+        try {
+            const dishes = await this.model.dishes('dishes');
+            response.render('plats', { dishes: dishes });
+        } catch (exception) {
+            next(exception);
+        }
+    }
+
+    private async getdesserts(request: Request, response: Response, next: NextFunction): Promise<void> {
+        try {
+            const deserts = await this.model.dishes('deserts');
+            response.render('desserts', { deserts : deserts });
+        } catch (exception) {
+            next(exception);
+        }
+    }
+
+
+
 }

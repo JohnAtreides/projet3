@@ -24,6 +24,7 @@ export class AdminController {
         router.get('/add', this.addDish.bind(this));
         router.get('/del', this.delDish.bind(this));
         router.post('/delDish', this.deleteDish.bind(this));
+        router.post('/delComment', this.deleteComment.bind(this));
         return router;
     }
 
@@ -73,7 +74,16 @@ export class AdminController {
         try {
             await this.adminModel.deleteDish(request.body);
             response.redirect('/');
-        } catch (errors) { }
+        } catch (errors) { console.log("error"); }
+    }
+
+
+    private async deleteComment(request: Request, response: Response, next: NextFunction): Promise<void> {
+        try {
+            console.log("delete comment");
+            await this.adminModel.deletecomment(request.body);
+            response.redirect('/forum');
+        } catch (errors) { console.log("error"); }
     }
 
 }

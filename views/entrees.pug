@@ -4,18 +4,12 @@ include ./dishes
 
 
 block title
-    | Menu
+    | Entrées
 
 block content
-    a(href="/entrees" class="btn btn-primary") Les Entrées
+    a(href="/" class="btn btn-primary") La carte des menus
     a(href="/plats" class="btn btn-primary") Les Plats
     a(href="/desserts" class="btn btn-primary") Les Desserts
 
     //dishes(starters)
     +dishes(starters)
-
-    //dishes(dishes)
-    +dishes(dishes)
-    
-    //+dishes(deserts)
-    +dishes(deserts)
